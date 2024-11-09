@@ -10,17 +10,17 @@
 ---
 
 ## 🌟 Impact Statement
-#### Streamlined Access
-PRAVESH revolutionizes entry/exit procedures, replacing manual logs with a fast, error-free RFID-based solution.
+#### ❖  Streamlined Access
+   ➤PRAVESH revolutionizes entry/exit procedures, replacing manual logs with a fast, error-free RFID-based solution.
 
-#### Enhanced Accountability
-With automated logging, students enjoy a hassle-free experience, while the administration gains accurate, paperless records and real-time insights.
+#### ❖  Enhanced Accountability
+   ➤With automated logging, students enjoy a hassle-free experience, while the administration gains accurate, paperless records and real-time insights.
 
-#### Efficient and Modernized
-Leveraging the Arduino UNO R4 WiFi microcontroller, PRAVESH integrates seamlessly with campus infrastructure, delivering real-time notifications and secure database storage.
+#### ❖  Efficient and Modernized
+   ➤Leveraging the Arduino UNO R4 WiFi microcontroller, PRAVESH integrates seamlessly with campus infrastructure, delivering real-time notifications and secure database storage.
 
-#### Eco-Friendly and Convenient
-The automated email system for visit approvals reduces paperwork, offering students and staff an efficient and environmentally friendly solution.
+#### ❖  Eco-Friendly and Convenient
+   ➤The automated email system for visit approvals reduces paperwork, offering students and staff an efficient and environmentally friendly solution.
 
 
 ---
@@ -40,6 +40,7 @@ The automated email system for visit approvals reduces paperwork, offering stude
 ---
 
 ## 📐 Circuit Diagram Explanation
+![PRAVESH - Circuit Diagram](https://github.com/user-attachments/assets/98a0ec40-ed14-47a5-8481-313d653f8307)
 
 1. **Power Input**  
    - Powered via USB from a laptop or through a 7.4V Li-ion battery pack to the `Vin` and `Ground` on Arduino.
@@ -259,6 +260,58 @@ delay(5000); // Short delay to prevent rapid switching
 }
 ```
 ---
+
+## 📝 Working Demonstration
+
+Below, you can see the working images of the project:
+
+- **Not Connected to Wi-Fi:** LED is red, and the screen shows “WiFi Connecting.”
+![RED LED IMG20241108235238](https://github.com/user-attachments/assets/7d5ae2d5-9c97-484f-a6bf-1a837b6e1785)
+
+- **Connected to Wi-Fi:** The screen displays "Wi-Fi Connected."
+![BLUE LED IMG20241108235328](https://github.com/user-attachments/assets/8ff30358-5498-4614-9ce1-8b24ba035b7f)
+
+- **System Ready:** LED turns green, signifying the system is ready to be used, and the screen displays “Scan your card.”
+![Green LED IMG20241108235348](https://github.com/user-attachments/assets/f6ee5008-3b08-4061-ad30-850119d6ce29)
+
+- **RFID Scanning:** When an RFID card is scanned, it sends the UID to the server. The screen shows “Wait,” indicating wait time before scanning the next RFID card. Upon successful scanning, the screen displays "Thank You" as a confirmation.
+![Wait IMG20241108235412](https://github.com/user-attachments/assets/c570e4f8-129a-48ab-b0cb-e4226a0298cf)
+
+- **System Reset:** After a successful scan, the display shows "Scan Your Card," indicating the system is ready for the next user.
+![Scan Your Card IMG20241108235345](https://github.com/user-attachments/assets/edf85817-3a3b-4a0c-8c59-f46ffec4698e)
+
+
+## 🛜 Working of the RFID Wi-Fi Access Control System
+
+This project functions as an RFID-based access control system that uses an **Arduino Uno R4 Wi-Fi** to connect to a server, send card UIDs, and provide real-time feedback through LEDs, a display, and a buzzer. The system operates as follows:
+
+### ❖  Setup and Initialization
+- Upon powering on, the **Arduino Uno R4 Wi-Fi** connects to the configured Wi-Fi network. If connected successfully, the green LED turns on, and the display shows “Scan your card” to indicate network readiness. The **RFID reader (MFRC522)** and other output components are also initialized.
+
+### ❖  Wi-Fi Status Check
+- In each loop iteration, the Arduino Uno R4 Wi-Fi checks its Wi-Fi connection status. If disconnected, the red LED lights up, and the screen shows “WiFi connecting...”. Once Wi-Fi reconnects, the red LED turns off, the green LED turns back on, and the screen displays “WiFi connected.”
+
+### ❖  RFID Tag Detection
+- The RFID reader continuously scans for new RFID tags. When a tag is detected, the reader retrieves the **UID**, a unique identifier for each tag. This UID is converted to a string for easy transmission.
+
+### ❖  Visual and Audio Feedback
+- Upon detecting an RFID tag, the system activates the LED, buzzer, and updates the screen to “Wait,” indicating a wait time between two RFID scans. This provides immediate feedback to the user that their tag has been scanned.
+
+### ❖  Data Transmission to Server
+- The UID is sent to the server using an **HTTP POST request**. The server URL is predefined, and the UID data is posted to the endpoint `/rfidattendancet/test_data.php`. The server response status and body are printed to the Serial Monitor for debugging and confirmation.
+
+### ❖  Completion and Reset
+- After the UID is successfully sent, the system changes the display from “Wait” to “Scan your card,” readying the system for the next scan. The RFID reader halts communication with the card to conserve power until the next tag is detected.
+
+### ❖  Email Functionality
+- During data transmission to the server, the UID is matched to the registered email of the respective user. A form is sent to the user’s email, asking for the **reason for visit** and an **estimated return time**. Once the user submits the form, it automatically updates the database.
+- The form sent to email is as follows:
+![Form](https://github.com/user-attachments/assets/11fcc62a-ddb5-4044-9ebf-1434e3fe8b86)
+
+### ❖  Delay and Repeat
+- A short delay prevents the system from reading the same card multiple times too quickly. The system then loops back to check for Wi-Fi status and new RFID tags, maintaining continuous operation.
+
+
 ## 💻 Custom Frontend Development
 
 We have crafted a sleek and intuitive frontend using **HTML** and **CSS**, ensuring a visually appealing website that not only meets the aesthetic needs but also serves the functional requirements for managing the system. The frontend is designed to provide ease of access and streamline the administration process.
@@ -269,6 +322,8 @@ The frontend consists of the following key pages:
 
 ### 1. Login Page
 This page serves as the authentication gateway, ensuring that only authorized personnel can access sensitive data. Users can log in using their **admin email ID** and **password**, providing a secure and controlled access point to the system.
+![0  login_page](https://github.com/user-attachments/assets/16b883b4-1eb2-475a-90ff-e6f1eb789965)
+
 
 ### 2. Users Page
 This page displays a list of all users currently registered in the system. The user details shown include:
@@ -278,6 +333,8 @@ This page displays a list of all users currently registered in the system. The u
 - **Email ID**
 
 The Users Page allows administrators to quickly view the status of all registered users.
+![1 5  users_page_user-added](https://github.com/user-attachments/assets/a0d17d71-7f17-424a-b67e-e4e1acde2414)
+
 
 ### 3. Manage Users Page
 This page enables administrators to perform key user management tasks:
@@ -289,6 +346,8 @@ This page enables administrators to perform key user management tasks:
   - **S. No.**
   - **Email ID**
 - **Removing Users**: Administrators can remove users from the system as needed.
+![2 5  manage_users_page_user-added](https://github.com/user-attachments/assets/8aba5afa-6930-4548-919c-52ca0cffcb4e)
+
 
 ### 4. Users Log Page
 This page presents a comprehensive log of student entry and exit details. The information displayed includes:
@@ -301,9 +360,13 @@ This page presents a comprehensive log of student entry and exit details. The in
 - **Estimated Time of Return**
 
 The Users Log Page offers administrators an easy-to-navigate interface to monitor all student movements in real-time.
+![3  users_log_page](https://github.com/user-attachments/assets/76dac3b2-93f9-45c6-8326-bb412fe4c20c)
+
 
 ### 5. Export to Excel Page
 The Export to Excel page provides the ability to download **Users Log Page** data in an **Excel (.xlsx)** format. Administrators can filter logs based on **date and time**, allowing for custom export of specific periods for further analysis or record-keeping.
+![3 5  export_excel_page](https://github.com/user-attachments/assets/426efdfa-9d43-4bd0-83ce-17902725e911)
+
 
 ---
 
