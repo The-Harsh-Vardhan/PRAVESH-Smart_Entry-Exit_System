@@ -1,5 +1,5 @@
 # 🌐 PRAVESH - Smart Entry-Exit System 🌐
-
+-by Kaushik and Harsh
 ---
 
 ## 📜 Project Overview
@@ -33,6 +33,9 @@ The automated email system for visit approvals reduces paperwork, offering stude
 - **5V Passive Buzzer**
 - **LCD1602 Display** with IIC/I2C interface
 - **IIC/I2C Serial Interface Adapter Module**
+- **10K Ohm Resistor**
+- **Jumper Wires**
+- **Bread Board**
 
 ---
 
