@@ -255,3 +255,53 @@ rfid.PCD_StopCrypto1();
 delay(5000); // Short delay to prevent rapid switching
 }
 ```
+---
+## 💻 Custom Frontend Development
+
+We have crafted a sleek and intuitive frontend using **HTML** and **CSS**, ensuring a visually appealing website that not only meets the aesthetic needs but also serves the functional requirements for managing the system. The frontend is designed to provide ease of access and streamline the administration process.
+
+To store and manage data, we integrated a **MySQL database** that holds user and log information securely. The backend communication with the MySQL database is handled efficiently using **PHP**, ensuring smooth handling of POST requests from the **Arduino UNO R4 Wi-Fi** board and seamless data retrieval.
+
+The frontend consists of the following key pages:
+
+### 1. Login Page
+This page serves as the authentication gateway, ensuring that only authorized personnel can access sensitive data. Users can log in using their **admin email ID** and **password**, providing a secure and controlled access point to the system.
+
+### 2. Users Page
+This page displays a list of all users currently registered in the system. The user details shown include:
+- **User ID**
+- **UID**
+- **Name**
+- **Email ID**
+
+The Users Page allows administrators to quickly view the status of all registered users.
+
+### 3. Manage Users Page
+This page enables administrators to perform key user management tasks:
+- **Adding New Users**: Easily register new users with necessary details.
+- **Updating Existing User Details**: Modify user information, including:
+  - **ID**
+  - **Name**
+  - **Gender**
+  - **S. No.**
+  - **Email ID**
+- **Removing Users**: Administrators can remove users from the system as needed.
+
+### 4. Users Log Page
+This page presents a comprehensive log of student entry and exit details. The information displayed includes:
+- **User ID**
+- **Card UID**
+- **Name**
+- **Gender**
+- **Date and Time of Entry/Exit**
+- **Reason for Visit**
+- **Estimated Time of Return**
+
+The Users Log Page offers administrators an easy-to-navigate interface to monitor all student movements in real-time.
+
+### 5. Export to Excel Page
+The Export to Excel page provides the ability to download **Users Log Page** data in an **Excel (.xlsx)** format. Administrators can filter logs based on **date and time**, allowing for custom export of specific periods for further analysis or record-keeping.
+
+---
+
+With this frontend setup, we have ensured a well-structured, user-friendly, and secure interface for managing and accessing data, making the administration process smoother and more efficient.
