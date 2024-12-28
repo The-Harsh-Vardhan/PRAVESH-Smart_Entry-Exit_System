@@ -1,49 +1,18 @@
 {
-    "functions": {
-        "api/**/*.php": {
-            "runtime": "vercel-php@0.6.0"
-        }
-    },
-    "routes": [
-        {
-            "src": "/index.php",
-            "dest": "/api/index.php"
-        },
-        {
-            "src": "/login.php",
-            "dest": "/api/login.php"
-        },
-        {
-            "src": "/header.php",
-            "dest": "/api/header.php"
-        },
-        {
-            "src": "/test_data.php",
-            "dest": "/api/test_data.php"
-        },
-        {
-            "src": "/connectDB.php",
-            "dest": "/api/connectDB.php"
-        },
-        {
-            "src": "/css/Users.css",
-            "dest": "/public/css/Users.css"
-        },
-        {
-            "src": "/js/jquery-2.2.3.min.js",
-            "dest": "/public/js/jquery-2.2.3.min.js"
-        },
-        {
-            "src": "/js/bootstrap.js",
-            "dest": "/public/js/bootstrap.js"
-        },
-        {
-            "src": "/images/favicon.png",
-            "dest": "/public/images/favicon.png"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        }
-    ]
+  "functions": {
+    "api/**/*.php": { "runtime": "vercel-php@0.6.0" }
+  },
+  "ignore": ["api/vendor/"],
+  "routes": [
+    { "src": "/index.php", "dest": "/api/index.php" },
+    { "src": "/login.php", "dest": "/api/login.php" },
+    { "src": "/header.php", "dest": "/api/header.php" },
+    { "src": "/test_data.php", "dest": "/api/test_data.php" },
+    { "src": "/connectDB.php", "dest": "/api/connectDB.php" },
+    { "src": "/css/Users.css", "dest": "/public/css/Users.css" },
+    { "src": "/js/jquery-2.2.3.min.js", "dest": "/public/js/jquery-2.2.3.min.js" },
+    { "src": "/js/bootstrap.js", "dest": "/public/js/bootstrap.js" },
+    { "src": "/images/favicon.png", "dest": "/public/images/favicon.png" },
+    { "src": "/(.*)", "dest": "/api/index.php" }
+  ]
 }
