@@ -1,0 +1,68 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Arduino Files
+*.hex
+*.elf
+*.map
+
+# PHP Files
+*.log
+/vendor/
+composer.phar
+.env
+
+# Database Files
+*.sql.backup
+*.sql.bak
+
+# Temporary Files
+*.tmp
+*.temp
+/tmp/
+/temp/
+
+# Configuration Files (with sensitive data)
+config.local.php
+db_config.local.php
+
+# Cache and Session Files
+/cache/
+/sessions/
+*.cache
+
+# Upload Directories
+/uploads/
+/files/
+
+# Node.js (if used for any frontend tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build Directories
+/build/
+/dist/
+
+# Personal Files
+*.personal
+*.private
+
+# WiFi Credentials (in case they're in separate files)
+wifi_config.h
+secrets.h
