@@ -31,7 +31,7 @@ _by Kaushik and Harsh_
 
 **PRAVESH** is an RFID-enabled Smart Entry-Exit System designed to replace manual entry logs with a seamless digital solution. Using RFID cards, students can access campus facilities with speed and accuracy, reducing delays and promoting accountability. Built on the **Arduino UNO R4 WiFi**, PRAVESH delivers real-time tracking, automated email notifications, and an intuitive interface for campus administration, enhancing security and convenience.
 
-🎬 **Watch Demo Video**: [YouTube](https://youtu.be/IVIbOu4JvdQ)
+🎬 **Watch Demo Video**: [YouTube](https://youtu.be/vyVivCF2l8Y?si=cmd3QmNAOQZfWhCp)
 
 ---
 
