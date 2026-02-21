@@ -483,7 +483,6 @@ With this frontend setup, we have ensured a well-structured, user-friendly, and 
 
 ```
 PRAVESH-Smart_Entry-Exit_System/
-├── Achievement/              # Contest achievements and certificates
 ├── api/                     # Backend PHP files and web assets
 │   ├── css/                 # Stylesheets
 │   ├── js/                  # JavaScript files
