@@ -6,109 +6,142 @@ if (isset($_SESSION['Admin-name'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Log In</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" type="text/css" href="css/login.css">
-    <script src="js/jquery-2.2.3.min.js"></script>
-    <script>
-      $(window).on("load resize ", function() {
-          var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
-          $('.tbl-header').css({'padding-right':scrollWidth});
-      }).resize();
-    </script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $(document).on('click', '.message', function(){
-          $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-          $('h1').animate({height: "toggle", opacity: "toggle"}, "slow");
-        });
+  <title>Log In</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <script src="js/jquery-2.2.3.min.js"></script>
+  <script>
+    $(window).on("load resize ", function () {
+      var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+      $('.tbl-header').css({ 'padding-right': scrollWidth });
+    }).resize();
+  </script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(document).on('click', '.message', function () {
+        $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        $('h1').animate({ height: "toggle", opacity: "toggle" }, "slow");
       });
-    </script>
+    });
+  </script>
 </head>
+
 <body style="background: #F2C464;">
-<div style="display: grid;: 200px; min-height: 100vh;">
+  <div style="display: grid;: 200px; min-height: 100vh;">
 
     <main style="padding: 20px;">
-        <h1 class="slideInDown animated">Please, Login with the Admin E-mail and Password</h1>
-        <h1 class="slideInDown animated" id="reset">Please, Enter your Email to send the reset password link</h1>
-        <!-- Log In -->
-<!-- Log In -->
-<section>
-  <div class="slideInDown animated">
-    <div class="login-page" style="border-radius: 25px;">
-      <div class="form" style="border-radius: 25px;background-color: #eda200;">
-      <?php  
-          if (isset($_GET['error'])) {
-            if ($_GET['error'] == "invalidEmail") {
-                echo '<div class="alert alert-danger">
+      <h1 class="slideInDown animated">Please, Login with the Admin E-mail and Password</h1>
+      <h1 class="slideInDown animated" id="reset">Please, Enter your Email to send the reset password link</h1>
+      <!-- Log In -->
+      <!-- Log In -->
+      <section>
+        <div class="slideInDown animated">
+          <div class="login-page" style="border-radius: 25px;">
+            <div class="form" style="border-radius: 25px;background-color: #eda200;">
+              <?php
+              if (isset($_GET['error'])) {
+                if ($_GET['error'] == "invalidEmail") {
+                  echo '<div class="alert alert-danger">
                         This E-mail is invalid!!
                       </div>';
-            }
-            elseif ($_GET['error'] == "sqlerror") {
-                echo '<div class="alert alert-danger">
+                } elseif ($_GET['error'] == "sqlerror") {
+                  echo '<div class="alert alert-danger">
                         There a database error!!
                       </div>';
-            }
-            elseif ($_GET['error'] == "wrongpassword") {
-                echo '<div class="alert alert-danger">
+                } elseif ($_GET['error'] == "wrongpassword") {
+                  echo '<div class="alert alert-danger">
                         Wrong password!!
                       </div>';
-            }
-            elseif ($_GET['error'] == "nouser") {
-                echo '<div class="alert alert-danger">
+                } elseif ($_GET['error'] == "nouser") {
+                  echo '<div class="alert alert-danger">
                         This E-mail does not exist!!
                       </div>';
-            }
-          }
-          if (isset($_GET['reset'])) {
-            if ($_GET['reset'] == "success") {
-                echo '<div class="alert alert-success">
+                }
+              }
+              if (isset($_GET['reset'])) {
+                if ($_GET['reset'] == "success") {
+                  echo '<div class="alert alert-success">
                         Check your E-mail!
                       </div>';
-            }
-          }
-          if (isset($_GET['account'])) {
-            if ($_GET['account'] == "activated") {
-                echo '<div class="alert alert-success">
+                }
+              }
+              if (isset($_GET['account'])) {
+                if ($_GET['account'] == "activated") {
+                  echo '<div class="alert alert-success">
                         Please Login
                       </div>';
-            }
-          }
-          if (isset($_GET['active'])) {
-            if ($_GET['active'] == "success") {
-                echo '<div class="alert alert-success">
+                }
+              }
+              if (isset($_GET['active'])) {
+                if ($_GET['active'] == "success") {
+                  echo '<div class="alert alert-success">
                         The activation like has been sent!
                       </div>';
-            }
-          }
-        ?>
-        <div class="alert1" style="background: #F2C464;"></div>
-        <form class="reset-form" action="reset_pass.php" method="post" enctype="multipart/form-data" style="background: #F2C464;border-radius: 25px;"">
+                }
+              }
+              ?>
+              <div class="alert1" style="background: #F2C464;"></div>
+              <form class="reset-form" action="reset_pass.php" method="post" enctype="multipart/form-data"
+                style="background: #F2C464;border-radius: 25px;"">
           
-          <input type="email" name="email" placeholder="E-mail..." required/>
-          <button type="submit" name="reset_pass" style="background: #F2C464;">Reset</button>
+          <input type=" email" name="email" placeholder="E-mail..." required />
+              <button type="submit" name="reset_pass" style="background: #F2C464;">Reset</button>
 
-          <p class="message"><a href="#">LogIn</a></p>
-        </form>
-        <form class="login-form" action="ac_login.php" method="post" enctype="multipart/form-data">
-          <input type="email" name="email" id="email" placeholder="E-mail..." required style="border-radius: 25px;"/>
-          <input type="password" name="pwd" id="pwd" placeholder="Password" required style="border-radius: 25px;"/>
-          <button type="submit" name="login" id="login" style="background: #F2C464;border-radius: 25px;">login</button>
+              <p class="message"><a href="#">LogIn</a></p>
+              </form>
+              <form class="login-form" action="ac_login.php" method="post" enctype="multipart/form-data">
+                <input type="email" name="email" id="email" placeholder="E-mail..." required
+                  style="border-radius: 25px;" />
+                <input type="password" name="pwd" id="pwd" placeholder="Password" required
+                  style="border-radius: 25px;" />
+                <button type="submit" name="login" id="login"
+                  style="background: #F2C464;border-radius: 25px;">LOGIN</button>
 
-          <p class="message" style="margin-bottom: 15px; color:black">Forgot your Password? <br> <br>
-            <a href="#" style="color:blue">
-            <i class="fa fa-cog"></i>  
-            Reset your password</a>
-          </p>
-          </form>
-                    </div>
-                </div>
+                <!-- Demo Login Button -->
+                <button type="button" id="demoBtn" onclick="demoLogin()" style="
+            background: #2c2c2c;
+            color: #F2C464;
+            border: 2px solid #F2C464;
+            border-radius: 25px;
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 1px;
+          ">⚡ DEMO LOGIN</button>
+                <p style="font-size: 11px; color: #555; margin-top: 6px; text-align:center;">
+                  Demo: pravesh@gmail.com / password
+                </p>
+
+                <p class="message" style="margin-bottom: 15px; color:black">Forgot your Password? <br> <br>
+                  <a href="#" style="color:blue">
+                    <i class="fa fa-cog"></i>
+                    Reset your password</a>
+                </p>
+              </form>
+
+              <script>
+                function demoLogin() {
+                  document.getElementById('email').value = 'pravesh@gmail.com';
+                  document.getElementById('pwd').value = 'password';
+                  document.getElementById('demoBtn').innerText = 'Logging in...';
+                  setTimeout(function () {
+                    document.getElementById('login').click();
+                  }, 500);
+                }
+              </script>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
     </main>
-</div>
+  </div>
 </body>
+
 </html>
