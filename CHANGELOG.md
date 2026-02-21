@@ -5,28 +5,6 @@ All notable changes to the PRAVESH - Smart Entry-Exit System project will be doc
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-## [1.1.0] - 2026-02-21
-
-### Added
-
-- `Achievement/` folder with recognition materials from Circuit Digest
-- `SECURITY.md` with responsible disclosure and deployment security guidance
-- Vercel badge to README header
-- Detailed project structure tree in README covering all directories
-
-### Changed
-
-- Sanitized Arduino code: replaced hardcoded WiFi credentials and server IP with `YOUR_WIFI_SSID`, `YOUR_WIFI_PASSWORD`, and `YOUR_SERVER_IP` placeholders
-- Updated README code snippets to match sanitized source
-- Expanded `api/` branch in project structure to show sub-directories
-- Updated `.gitignore` to exclude `api/vendor/` (Composer deps) and `rfidattendance/`
-
-### Fixed
-
-- Broken `Achievement/` image references now documented in `Achievement/README.md`
-
 ## [1.0.0] - 2024-11-08
 
 ### Added
@@ -57,8 +35,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - LCD1602 Display with I2C interface
 - 5V Passive Buzzer
 - Supporting electronic components
-
-### Recognition
-
-- Featured in IoT & Edge AI Project Challenge 2024 by Circuit Digest
-- Official project showcase and certificate received
