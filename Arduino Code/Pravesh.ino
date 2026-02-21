@@ -11,16 +11,26 @@
 #define BLUE_LED_PIN 3
 #define BUZZER_PIN 5 // Define the buzzer pin
 
-String URL = "http://192.168.104.160/rfidattendance/test_data.php";
-const char* ssid = "kk"; // Your WiFi network name
-const char* password = "12345678"; // Your WiFi password
+// ─────────────────────────────────────────────────────────────────────────────
+// ⚙️  CONFIGURATION — update these values before uploading to your Arduino
+// ─────────────────────────────────────────────────────────────────────────────
+const char* ssid     = "YOUR_WIFI_SSID";      // Your WiFi network name
+const char* password = "YOUR_WIFI_PASSWORD";  // Your WiFi password
+
+// Your local server IP address (e.g. "192.168.1.100") and endpoint path
+const char* serverIP   = "YOUR_SERVER_IP";
+const int   serverPort = 80;
+String      serverPath = "/rfidattendance/test_data.php";
+
+String URL = String("http://") + serverIP + serverPath;
+// ─────────────────────────────────────────────────────────────────────────────
 
 #define RST_PIN 9
 #define SS_PIN 10
 
 MFRC522 rfid(SS_PIN, RST_PIN); // Create MFRC522 instance
-WiFiClient wifiClient; // Create WiFiClient instance
-HttpClient client = HttpClient(wifiClient, "192.168.104.160", 80); // Use IP and port for the server
+WiFiClient wifiClient;         // Create WiFiClient instance
+HttpClient client = HttpClient(wifiClient, serverIP, serverPort); // Server connection
 
 // Initialize LCD with I2C address (0x27 is common, but check your LCD's documentation)
 LiquidCrystal_I2C lcd(0x27, 16, 2); // 16 columns, 2 rows

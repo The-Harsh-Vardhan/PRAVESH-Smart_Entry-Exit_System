@@ -6,13 +6,13 @@ _by Kaushik and Harsh_
 [![Arduino](https://img.shields.io/badge/Arduino-00979D?style=flat&logo=Arduino&logoColor=white)](https://www.arduino.cc/)
 [![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white)](https://php.net/)
 [![MySQL](https://img.shields.io/badge/MySQL-005C84?style=flat&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)](https://vercel.com/)
 
 ![Pravesh Title Image](Pravesh%20Title%20Image.png)
 
 ## 📋 Table of Contents
 
 - [Project Overview](#-project-overview)
-- [Achievements & Recognition](#-achievements--recognition)
 - [Impact Statement](#-impact-statement)
 - [Components Used](#-components-used)
 - [Circuit Diagram](#-circuit-diagram-explanation)
@@ -32,38 +32,6 @@ _by Kaushik and Harsh_
 **PRAVESH** is an RFID-enabled Smart Entry-Exit System designed to replace manual entry logs with a seamless digital solution. Using RFID cards, students can access campus facilities with speed and accuracy, reducing delays and promoting accountability. Built on the **Arduino UNO R4 WiFi**, PRAVESH delivers real-time tracking, automated email notifications, and an intuitive interface for campus administration, enhancing security and convenience.
 
 🎬 **Watch Demo Video**: [YouTube](https://youtu.be/IVIbOu4JvdQ)
-
----
-
-## 🏆 Achievements & Recognition
-
-**PRAVESH** has been recognized in the **IoT & Edge AI Project Challenge 2024** by **Circuit Digest**!
-
-### 🥇 Contest Participation
-
-- **Event**: [IoT & Edge AI Project Challenge 2024](https://circuitdigest.com/contest/iot-edge-ai-project-challenge-2024/) by Circuit Digest
-- **Project Submission**: [PRAVESH - Smart Entry-Exit System](https://circuitdigest.com/microcontroller-projects/pravesh-smart-entry-exit-system)
-- **Status**: Successfully featured and recognized
-
-### 📜 Certificate & Recognition
-
-<div align="center">
-  <img src="Achievement/Certificate.jpg" alt="Certificate of Achievement" width="600"/>
-  <p><em>Certificate of Recognition from Circuit Digest</em></p>
-</div>
-
-### 🎁 Rewards Received
-
-<div align="center">
-  <img src="Achievement/Goodies.jpg" alt="Achievement Goodies" width="400"/>
-  <p><em>Goodies and rewards received from Circuit Digest</em></p>
-</div>
-
-### 🎥 Featured Video
-
-Our project was featured in an official result video by Circuit Digest showcasing the winning and featured projects from the challenge.
-
-**[View Contest Results](https://circuitdigest.com/contest/iot-edge-ai-project-challenge-2024/)**
 
 ---
 
@@ -179,16 +147,26 @@ Our project was featured in an official result video by Circuit Digest showcasin
 #define BLUE_LED_PIN 3
 #define BUZZER_PIN 5 // Define the buzzer pin
 
-String URL = "http://192.168.104.160/rfidattendance/test_data.php";
-const char* ssid = "kk"; // Your WiFi network name
-const char* password = "12345678"; // Your WiFi password
+// ─────────────────────────────────────────────────────────────────────────────
+// ⚙️  CONFIGURATION — update these values before uploading to your Arduino
+// ─────────────────────────────────────────────────────────────────────────────
+const char* ssid     = "YOUR_WIFI_SSID";      // Your WiFi network name
+const char* password = "YOUR_WIFI_PASSWORD";  // Your WiFi password
+
+// Your local server IP address (e.g. "192.168.1.100") and endpoint path
+const char* serverIP   = "YOUR_SERVER_IP";
+const int   serverPort = 80;
+String      serverPath = "/rfidattendance/test_data.php";
+
+String URL = String("http://") + serverIP + serverPath;
+// ─────────────────────────────────────────────────────────────────────────────
 
 #define RST_PIN 9
 #define SS_PIN 10
 
 MFRC522 rfid(SS_PIN, RST_PIN); // Create MFRC522 instance
-WiFiClient wifiClient; // Create WiFiClient instance
-HttpClient client = HttpClient(wifiClient, "192.168.104.160", 80); // Use IP and port for the server
+WiFiClient wifiClient;         // Create WiFiClient instance
+HttpClient client = HttpClient(wifiClient, serverIP, serverPort);
 
 // Initialize LCD with I2C address (0x27 is common, but check your LCD's documentation)
 LiquidCrystal_I2C lcd(0x27, 16, 2); // 16 columns, 2 rows
@@ -506,11 +484,20 @@ With this frontend setup, we have ensured a well-structured, user-friendly, and 
 ```
 PRAVESH-Smart_Entry-Exit_System/
 ├── Achievement/              # Contest achievements and certificates
-├── api/                     # Backend PHP files and database
-├── Arduino Code/            # Arduino source code
-├── Database/               # MySQL database schema
-├── Form/                   # Email form templates
+├── api/                     # Backend PHP files and web assets
+│   ├── css/                 # Stylesheets
+│   ├── js/                  # JavaScript files
+│   ├── icons/               # Icon assets
+│   ├── connectDB.php        # Local DB connection (placeholder credentials)
+│   ├── connectDB_vercel.php # Vercel/production DB connection (env vars)
+│   └── *.php                # All backend PHP pages
+├── Arduino Code/            # Arduino source code (.ino)
+├── Database/                # MySQL database schema (.sql)
+├── Form/                    # Email form templates
 ├── Frontend Website Images/ # UI screenshots
+├── Hardware Images/         # Physical hardware photos
+├── public/                  # Static public assets
+├── vercel.json              # Vercel deployment configuration
 └── README.md               # Project documentation
 ```
 
@@ -539,12 +526,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 
 - **Kaushik** - Hardware Design & Arduino Programming
 - **Harsh Vardhan** - Full-Stack Development & System Integration
-
-## 🙏 Acknowledgments
-
-- **Circuit Digest** for featuring our project in the IoT & Edge AI Challenge 2024
-- Arduino community for excellent documentation and support
-- All contributors and supporters of the PRAVESH project
 
 ## 📞 Contact
 

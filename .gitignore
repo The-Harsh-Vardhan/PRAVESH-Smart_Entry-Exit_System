@@ -23,8 +23,12 @@ Thumbs.db
 # PHP Files
 *.log
 /vendor/
+api/vendor/
 composer.phar
 .env
+
+# Local RFID attendance test folder
+rfidattendance/
 
 # Database Files
 *.sql.backup
@@ -63,6 +67,7 @@ yarn-error.log*
 *.personal
 *.private
 
-# WiFi Credentials (in case they're in separate files)
+# WiFi / Secret Credentials (in case they're in separate files)
 wifi_config.h
 secrets.h
+config.secret.php

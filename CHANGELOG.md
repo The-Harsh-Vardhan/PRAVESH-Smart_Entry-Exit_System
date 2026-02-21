@@ -7,24 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-02-21
+
 ### Added
 
-- Achievements section to README showcasing Circuit Digest recognition
-- Comprehensive project documentation improvements
-- GitHub-friendly repository structure
-- Contributing guidelines
-- Issue and pull request templates
-- Table of contents for better navigation
+- `Achievement/` folder with recognition materials from Circuit Digest
+- `SECURITY.md` with responsible disclosure and deployment security guidance
+- Vercel badge to README header
+- Detailed project structure tree in README covering all directories
 
 ### Changed
 
-- Updated README with badges and better formatting
-- Enhanced project structure documentation
-- Improved installation and setup instructions
+- Sanitized Arduino code: replaced hardcoded WiFi credentials and server IP with `YOUR_WIFI_SSID`, `YOUR_WIFI_PASSWORD`, and `YOUR_SERVER_IP` placeholders
+- Updated README code snippets to match sanitized source
+- Expanded `api/` branch in project structure to show sub-directories
+- Updated `.gitignore` to exclude `api/vendor/` (Composer deps) and `rfidattendance/`
 
 ### Fixed
 
-- Documentation formatting and clarity improvements
+- Broken `Achievement/` image references now documented in `Achievement/README.md`
 
 ## [1.0.0] - 2024-11-08
 
