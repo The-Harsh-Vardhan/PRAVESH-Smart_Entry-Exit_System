@@ -1,37 +1,117 @@
 {
   "functions": {
-    "api/**/*.php": { "runtime": "vercel-php@0.6.0" }
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
   },
-  "ignore": ["api/vendor/"],
   "routes": [
-    { "src": "/css/(.*)", "dest": "/public/css/$1" },
-    { "src": "/js/(.*)", "dest": "/public/js/$1" },
-    { "src": "/images/(.*)", "dest": "/public/images/$1" },
-    { "src": "/icons/(.*)", "dest": "/public/icons/$1" },
-    
-    { "src": "/index.php", "dest": "/api/index.php" },
-    { "src": "/login.php", "dest": "/api/login.php" },
-    { "src": "/logout.php", "dest": "/api/logout.php" },
-    { "src": "/header.php", "dest": "/api/header.php" },
-    { "src": "/connectDB.php", "dest": "/api/connectDB_vercel.php" },
-    { "src": "/test_data.php", "dest": "/api/test_data.php" },
-    { "src": "/test_data2.php", "dest": "/api/test_data2.php" },
-    { "src": "/getdata.php", "dest": "/api/getdata.php" },
-    { "src": "/devices.php", "dest": "/api/devices.php" },
-    { "src": "/dev_config.php", "dest": "/api/dev_config.php" },
-    { "src": "/dev_up.php", "dest": "/api/dev_up.php" },
-    { "src": "/ManageUsers.php", "dest": "/api/ManageUsers.php" },
-    { "src": "/manage_users_conf.php", "dest": "/api/manage_users_conf.php" },
-    { "src": "/manage_users_up.php", "dest": "/api/manage_users_up.php" },
-    { "src": "/UsersLog.php", "dest": "/api/UsersLog.php" },
-    { "src": "/user_log_up.php", "dest": "/api/user_log_up.php" },
-    { "src": "/Export_Excel.php", "dest": "/api/Export_Excel.php" },
-    { "src": "/ac_login.php", "dest": "/api/ac_login.php" },
-    { "src": "/ac_update.php", "dest": "/api/ac_update.php" },
-    { "src": "/check_deadlines.php", "dest": "/api/check_deadlines.php" },
-    { "src": "/install.php", "dest": "/api/install.php" },
-    { "src": "/Logo1.png", "dest": "/public/images/Logo1.png" },
-    
-    { "src": "/(.*)", "dest": "/api/index.php" }
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
+      "src": "/icons/(.*)",
+      "dest": "/public/icons/$1"
+    },
+    {
+      "src": "/index.php",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/login.php",
+      "dest": "/api/login.php"
+    },
+    {
+      "src": "/logout.php",
+      "dest": "/api/logout.php"
+    },
+    {
+      "src": "/header.php",
+      "dest": "/api/header.php"
+    },
+    {
+      "src": "/connectDB.php",
+      "dest": "/api/connectDB_vercel.php"
+    },
+    {
+      "src": "/test_data.php",
+      "dest": "/api/test_data.php"
+    },
+    {
+      "src": "/test_data2.php",
+      "dest": "/api/test_data2.php"
+    },
+    {
+      "src": "/getdata.php",
+      "dest": "/api/getdata.php"
+    },
+    {
+      "src": "/devices.php",
+      "dest": "/api/devices.php"
+    },
+    {
+      "src": "/dev_config.php",
+      "dest": "/api/dev_config.php"
+    },
+    {
+      "src": "/dev_up.php",
+      "dest": "/api/dev_up.php"
+    },
+    {
+      "src": "/ManageUsers.php",
+      "dest": "/api/ManageUsers.php"
+    },
+    {
+      "src": "/manage_users_conf.php",
+      "dest": "/api/manage_users_conf.php"
+    },
+    {
+      "src": "/manage_users_up.php",
+      "dest": "/api/manage_users_up.php"
+    },
+    {
+      "src": "/UsersLog.php",
+      "dest": "/api/UsersLog.php"
+    },
+    {
+      "src": "/user_log_up.php",
+      "dest": "/api/user_log_up.php"
+    },
+    {
+      "src": "/Export_Excel.php",
+      "dest": "/api/Export_Excel.php"
+    },
+    {
+      "src": "/ac_login.php",
+      "dest": "/api/ac_login.php"
+    },
+    {
+      "src": "/ac_update.php",
+      "dest": "/api/ac_update.php"
+    },
+    {
+      "src": "/check_deadlines.php",
+      "dest": "/api/check_deadlines.php"
+    },
+    {
+      "src": "/install.php",
+      "dest": "/api/install.php"
+    },
+    {
+      "src": "/Logo1.png",
+      "dest": "/public/images/Logo1.png"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
   ]
 }
