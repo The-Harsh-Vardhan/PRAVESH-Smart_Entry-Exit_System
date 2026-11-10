@@ -1,6 +1,8 @@
-# 🌐 PRAVESH - Smart Entry-Exit System 🌐
+# PRAVESH - Smart Entry-Exit System
 
 _by Kaushik and Harsh_
+
+**An RFID tap-in / tap-out system for campus gate logging: an Arduino UNO R4 WiFi reads a card, a PHP + MySQL backend records the movement, and the student gets an emailed form for the reason and expected return time.**
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Arduino](https://img.shields.io/badge/Arduino-00979D?style=flat&logo=Arduino&logoColor=white)](https://www.arduino.cc/)
@@ -9,23 +11,70 @@ _by Kaushik and Harsh_
 
 ![Pravesh Title Image](Pravesh%20Title%20Image.png)
 
-## 📋 Table of Contents
+**Recognition:** featured in the [IoT & Edge AI Project Challenge 2024](https://circuitdigest.com/contest/iot-edge-ai-project-challenge-2024/) by Circuit Digest ([submission](https://circuitdigest.com/microcontroller-projects/pravesh-smart-entry-exit-system)). **Demo video:** [YouTube](https://youtu.be/IVIbOu4JvdQ). **Docs site:** [the-harsh-vardhan.github.io/PRAVESH-Smart_Entry-Exit_System](https://the-harsh-vardhan.github.io/PRAVESH-Smart_Entry-Exit_System/).
 
-- [Project Overview](#-project-overview)
-- [Achievements & Recognition](#-achievements--recognition)
-- [Impact Statement](#-impact-statement)
-- [Components Used](#-components-used)
-- [Circuit Diagram](#-circuit-diagram-explanation)
-- [Project Walkthrough](#-project-walkthrough)
-- [Arduino Code Overview](#-arduino-code-overview)
-- [Working Demonstration](#-working-demonstration)
-- [System Working](#-working-of-the-rfid-wi-fi-access-control-system)
-- [Frontend Development](#-custom-frontend-development)
-- [Installation & Setup](#-installation--setup)
-- [Contributing](#-contributing)
-- [License](#-license)
+## What it does
+
+- Reads a 13.56 MHz RFID card (RC522) and POSTs its UID over Wi-Fi to a PHP endpoint, with LCD, RGB LED and buzzer feedback.
+- Matches the UID to a registered student, then either opens a new exit log (default deadline 22:00) or closes the open one by stamping the return time.
+- Emails the student a form asking for the reason for leaving and the estimated return time; submitting it updates the log.
+- Sends a warning email as the return deadline approaches (`api/check_deadlines.php`).
+- Admin web panel: login, user management, entry/exit log, and Excel export filtered by date and time.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    Card[RFID card] -->|tap| RC522[RC522 reader]
+    RC522 -->|SPI| Uno[Arduino UNO R4 WiFi]
+    Uno -->|LCD, RGB LED, buzzer| User[Student feedback]
+    Uno -->|HTTP POST uid| TD[api/test_data.php]
+    TD -->|lookup, open or close log| DB[(MySQL: students, logs)]
+    TD -->|SMTP via PHPMailer| Mail[Email with form link]
+    Mail --> Form[Form/form.php + submit_form.php]
+    Form -->|reason + return estimate| DB
+    CD[api/check_deadlines.php] -->|deadline warning| Mail
+    Admin[Admin web panel] -->|view, manage, export| DB
+```
+
+## Screenshots
+
+| Users log | Export to Excel |
+|---|---|
+| ![Users log page](https://github.com/user-attachments/assets/76dac3b2-93f9-45c6-8326-bb412fe4c20c) | ![Export page](https://github.com/user-attachments/assets/426efdfa-9d43-4bd0-83ce-17902725e911) |
+
+More screenshots, the circuit diagram and the hardware demo photos are further down.
+
+## Quickstart
+
+1. Wire the hardware per the [circuit diagram](#-circuit-diagram-explanation) and flash `Arduino Code/Pravesh.ino` (set Wi-Fi credentials and the server IP).
+2. Import the schema: `mysql -u username -p database_name < Database/sensor_db.sql`
+3. Serve `api/` from XAMPP/WAMP (PHP + MySQL), set the DB connection in `api/connectDB.php`, and configure SMTP in the PHP mail code.
+4. Power the device, wait for the green LED, scan a registered card, and watch the log in the web panel.
+
+Known gap: the bundled SQL files do not yet match the columns the PHP scan flow uses, see [#5](https://github.com/The-Harsh-Vardhan/PRAVESH-Smart_Entry-Exit_System/issues/5).
+
+## Tech stack
+
+Arduino UNO R4 WiFi (C++: WiFiS3, ArduinoHttpClient, MFRC522, LiquidCrystal_I2C), PHP, MySQL, PHPMailer, HTML/CSS/JS (Bootstrap, jQuery), Vercel config for the demo deployment.
+
+## Project structure
+
+```
+PRAVESH-Smart_Entry-Exit_System/
+├── Achievement/               # Contest certificate, goodies, result links
+├── api/                       # PHP backend + admin web panel (test_data.php, check_deadlines.php, ...)
+├── Arduino Code/              # Pravesh.ino + code explanation
+├── Database/                  # MySQL schema (sensor_db.sql)
+├── Form/                      # Email form (form.php, submit_form.php)
+├── Frontend Website Images/   # UI screenshots
+├── docs/                      # GitHub Pages site
+└── PRAVESH - Circuit Diagram.(png|pdf)
+```
 
 ---
+
+# Detailed documentation
 
 ## 📜 Project Overview
 
@@ -34,7 +83,6 @@ _by Kaushik and Harsh_
 🎬 **Watch Demo Video**: [YouTube](https://youtu.be/IVIbOu4JvdQ)
 
 ---
-
 ## 🏆 Achievements & Recognition
 
 **PRAVESH** has been recognized in the **IoT & Edge AI Project Challenge 2024** by **Circuit Digest**!
@@ -378,7 +426,7 @@ This project functions as an RFID-based access control system that uses an **Ard
 
 ### ❖ Data Transmission to Server
 
-- The UID is sent to the server using an **HTTP POST request**. The server URL is predefined, and the UID data is posted to the endpoint `/rfidattendancet/test_data.php`. The server response status and body are printed to the Serial Monitor for debugging and confirmation.
+- The UID is sent to the server using an **HTTP POST request**. The server URL is predefined, and the UID data is posted to the endpoint `/rfidattendance/test_data.php`. The server response status and body are printed to the Serial Monitor for debugging and confirmation.
 
 ### ❖ Completion and Reset
 
@@ -492,27 +540,6 @@ With this frontend setup, we have ensured a well-structured, user-friendly, and 
    - Update WiFi credentials in Arduino code
    - Configure email settings in `api/` PHP files
    - Set appropriate permissions for web directories
-
-## 🚀 Usage
-
-1. Power on the Arduino device
-2. Wait for WiFi connection (green LED indicator)
-3. Access the web interface through your browser
-4. Scan RFID cards to log entries/exits
-5. Monitor logs through the web dashboard
-
-## 📁 Project Structure
-
-```
-PRAVESH-Smart_Entry-Exit_System/
-├── Achievement/              # Contest achievements and certificates
-├── api/                     # Backend PHP files and database
-├── Arduino Code/            # Arduino source code
-├── Database/               # MySQL database schema
-├── Form/                   # Email form templates
-├── Frontend Website Images/ # UI screenshots
-└── README.md               # Project documentation
-```
 
 ## 🤝 Contributing
 
